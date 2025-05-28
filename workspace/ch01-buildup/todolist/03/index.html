@@ -208,7 +208,25 @@
         console.log(selectedIem);
         // item의 done 값을 수정
         selectedIem.done = !selectedIem.done;
+
         // 화면 갱신, done 값에 따라서 <s> 추가 또는 삭제
+        const targetLi = document.querySelector(
+          `.todolist > li[data-num="${num}"]`
+        );
+
+        // HTMLElement.childNodes: 자식 노드들이 저장된 유사 배열 객체(TextNode 포함)
+        // HTMLElement.children: 자식 노드들이 저장된 유사 배열 객체(ElementNode 만 포함)
+        const titleSpan = targetLi.children;
+        if (selectedIem.done) {
+          // 완료면 취소선 붙이기 -> <spam>샘플3</span> -> <span><s>샘플3</s></span>
+          const sElem = document.createElement("s");
+          sElem.appendChild(titleSpan.firstChild);
+          titleSpan.appendChild(sElem);
+        } else {
+          // 아니면 취소선 없애기 -> <span><s>샘플3</s></span> -> <spam>샘플3</span>
+          titleSpan.appendChild(titleSpan.firstChild.lastChild);
+          titleSpan.firstChild.remove();
+        }
       }
 
       // 할일 삭제
