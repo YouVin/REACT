@@ -64,11 +64,11 @@ const add10 = function(x) {
   return x + 10;
 };
 // 화살표 함수
-const add = (x) => {
+const add10 = (x) => {
   return x + 10;
 }
 // 화살표 함수 매개변수의 괄호와 본문의 중괄호 생략
-const add = x => x + 10;
+const add10 = x => x + 10;
 ```
 
 ## 2.2 구조 분해 할당 (Destructuring assignment)
@@ -232,8 +232,8 @@ MyMath.minus(2, 3);
 ```ts
 new Promise<T>(
   executor: (
-  resolve: (value: T) => void,
-  reject: (reason?: any) => void
+    resolve: (value: T) => void,
+    reject: (reason?: any) => void
   ) => void
 )
 ```
@@ -349,7 +349,7 @@ async function test(){
     console.log('p2의 작업 결과.', result3);
     const result4 = await a2();
     console.log('a2의 작업 결과.', result4);
-    } catch(error) {
+  } catch(error) {
     console.log('에러 발생.', error);
   }
 }
@@ -360,7 +360,7 @@ async function test(){
 * `push(...items): number`
   - 배열의 마지막 위치에 items 요소들을 추가하고 새로운 배열 길이를 반환
 
-* `pop(): string | undefined`
+* `pop(): any | undefined`
   - 배열의 마지막 요소를 제거하고 반환
 
 #### 예시
@@ -384,7 +384,7 @@ console.log(lastFruit, fruits);   // 딸기 ['사과', '바나나', '오렌지'
 * `unshift(...items): number`
   - 배열의 맨앞에 items 요소들을 삽입하고 새로운 배열 길이를 반환
 
-* `shift(): string | undefined`
+* `shift(): any | undefined`
   - 배열의 첫 번째 요소를 제거하고 반환
 
 #### 예시
@@ -416,11 +416,8 @@ console.log(firstFruit,  fruits); // 포도 ['딸기', '사과', '바나나']
 #### 예시
 ```ts
 const arr = [1, 3, 5, 8, 9, 3, 4, 5];
-console.log('첫번째 3의 위치', arr.indexOf(3));
-console.log('마지막 3의 위치', arr.lastIndexOf(3));
-
-console.log(arr.find(num => num % 2 === 0));
-console.log(arr.findIndex(num => num % 2 === 0));
+console.log('첫번째 3의 위치', arr.indexOf(3)); // 1
+console.log('마지막 3의 위치', arr.lastIndexOf(3)); // 5
 ```
 
 ### 2.9.4 includes, concat
@@ -550,9 +547,9 @@ console.log('map', newArr); // [100, 400, 900]
 ```ts
 const arr = [1, 3, 5, 8, 9, 3, 4, 5];
 
-console.log(arr.find(num => num % 2 === 0)); // 8
-console.log(arr.findIndex(num => num % 2 === 0)); // 3
-console.log(arr.filter(n => n % 2 === 0)); // [8, 4]
+console.log(arr.find(num => num % 2 === 0)); // 8, 배열의 첫번째 짝수 찾기
+console.log(arr.findIndex(num => num % 2 === 0)); // 3, 배열의 첫번째 짝수의 인덱스 찾기
+console.log(arr.filter(n => n % 2 === 0)); // [8, 4], 배열의 모든 짝수를 찾기
 ```
 
 ### 2.9.10 some, every
@@ -570,14 +567,14 @@ console.log(arr.filter(n => n % 2 === 0)); // [8, 4]
 ```ts
 const arr = [1, 2, 3];
 
-const hasEven = arr.some(n => n % 2 === 0); // true
-const isAllEven = arr.every(n => n % 2 === 0); // false
+const hasEven = arr.some(n => n % 2 === 0); // true, 짝수가 하나로도 있는가?
+const isAllEven = arr.every(n => n % 2 === 0); // false, 모두 짝수인가?ㄴ
 
 console.log(hasEven, isAllEven);
 ```
 
 ### 2.9.11 reduce
-* `reduce(accumulator: (previousValue, currentValue, index, array), initialValue): any`
+* `reduce(reducerfn: (previousValue, currentValue, index, array), initialValue?): any`
   - 배열의 각 요소에 대해 제공한 `reducerfn`을 실행
   - 이전 `reducerfn`의 반환값이 다음 `reducerfn`의 인자값으로 전달되며 최종적으로 하나의 결과값을 반환
   - `reducerfn`이 처음 실행되면 "이전 리듀서의 반환값"이 없으므로 `reduce` 함수의 두번째 인자로 전달하는 `initialValue` 값을 사용하거나 두번째 인자가 생략될 경우 배열의 `첫번째 index` 값이 지정되고 배열의 `두번째 요소`부터 리듀서가 실행
@@ -601,7 +598,7 @@ console.log(sum); // 0 + 1 + 2 + 3 + 4
 const arr = [1, 2, 3, 4];
 
 const sum = arr.reduce(function(accumulator, currentValue){
-  return accumulator + currentValue
+  return accumulator + currentValue;
 }, 0);
 
 console.log(sum); // 0 + 1 + 2 + 3 + 4
