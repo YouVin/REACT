@@ -13,6 +13,7 @@
 
     // 헤더 컴포넌트
     function Header(){
+      console.log('\tHeader 호출됨');
       return (
         Reaction.createElement('header', null, 
           Reaction.createElement('h1', null, 'Counter - 07. 데이터(상태) 변경시 자동으로 UI 리렌더링'), 
@@ -23,6 +24,7 @@
 
     // Counter 컴포넌트
     function Counter(){
+      console.log('\tCounter 호출됨');
       // let count = 0;
 
       const [count, setCount] = Reaction.useState(0);
@@ -56,6 +58,7 @@
 
     // App 컴포넌트(어플리케이션의 시작점)
     function App(){
+      console.log('App 호출됨');
       return (
         Reaction.createElement('div', { id: 'app' }, Header, Counter)
       );
