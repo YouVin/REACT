@@ -5,9 +5,9 @@ function App() {
   return (
     <>
       <Header />
-      <Counter />
+      <Counter>100</Counter>
     </>
-  );  
+  );
 }
 
-export default App
+export default App;
