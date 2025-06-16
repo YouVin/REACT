@@ -1,7 +1,7 @@
 import Todo from "@pages/Todo";
 import type { TodoItem } from "@pages/TodoItem";
 import todoReducer from "@pages/todoReducer";
-import { useReducer } from "react";
+import { useReducer, useRef } from "react";
 
 function TodoContainer(){
   // 샘플 목록
@@ -15,11 +15,11 @@ function TodoContainer(){
   const [ itemList, todoDispatch ] = useReducer(todoReducer, initItemList);
 
   // TODO 2. useRef를 사용해서 nextId를 생성해서 할일 추가시 1씩 증가
-
+  const nextId = useRef(initItemList.length + 1);
 
   // 할일 추가
   const addItem = (title: string) => {
-    const item: TodoItem = { _id: itemList[itemList.length-1]?._id + 1 || 1, title, done: false };
+    const item: TodoItem = { _id: nextId.current++, title, done: false };
     todoDispatch({ type: 'ADD', value: item });
   }
 
