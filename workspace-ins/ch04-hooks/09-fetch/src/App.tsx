@@ -60,18 +60,23 @@ function App() {
     try {
       // 로딩 상태를 true로 설정
       setIsLoading(true);
+
       const res = await fetch(API_SERVER + fetchParams.url);
       console.log('서버 응답', res);
+
       const jsonRes: ResData = await res.json();
       console.log('파싱된 데이터', jsonRes);
+
       if(jsonRes.ok){
         setData(jsonRes);
       }else{
-        
+        throw new Error(jsonRes.error.message);
       }
       
     } catch(err){
+      // 네트워크 오류 같은 예외 발생 시
       console.error(err);
+      setError(err as Error);
     } finally {
       // 성공/실패 여부과 관계없이 로딩 상태를 false로 설정
       setIsLoading(false);
@@ -81,7 +86,7 @@ function App() {
   // 컴포넌트가 마운트 된 후에 Todo 목록 조회
   useEffect(() => {
     console.log('마운트 후에 한번만 호출됨.');
-    const params = { url: '/todolist' };
+    const params = { url: '/todolist?delay=1000' };
     fetchTodo(params);
   }, []); // 빈 배열을 전달해서 마운트시 한번만 실행되도록 설정
 
@@ -91,14 +96,18 @@ function App() {
       <h2>할일 목록</h2>
 
       {/* 로딩중일 때 로딩중 메시지 표시 */}
-      { isLoading && <p>로딩중...</p> }
+      { isLoading && 
+        <p>로딩중...</p> 
+      }
       
       {/* 에러가 있을 경우 빨간색으로 에러 메시지 표시 */}
-      <p style={{ color: 'red' }}>에러 메세지</p>
+      { error && 
+        <p style={{ color: 'red' }}>{ error.message }</p> 
+      }
           
       {/* 서버에서 받은 Todo 목록을 렌더링 */}
       <ul>
-        { data?.items.map() }
+        { data?.items.map(item => <li key={item._id}>{ item.title }</li>) }
       </ul>
     </>
   );
