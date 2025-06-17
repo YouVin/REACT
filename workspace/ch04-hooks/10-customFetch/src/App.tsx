@@ -1,7 +1,8 @@
+import useAxios from "@hooks/useAxios";
 import useFetch from "@hooks/useFetch";
 
 function App() {
-  const { isLoading, error, data } = useFetch({ url: "/todolist?delay=1000" });
+  const { isLoading, error, data } = useAxios({ url: "/todolist?delay=1000" });
 
   return (
     <>
