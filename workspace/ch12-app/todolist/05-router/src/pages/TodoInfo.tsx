@@ -23,25 +23,39 @@ function TodoInfo() {
 
   const infoMatch = useMatch("/list/:_id");
 
-  useEffect(() => {}, []);
+  const [data, setData] = useState<TodoItem | null>(null);
+
+  const fetchTodoInfo = () => {
+    console.log("API 서버에 상세 정보 요청");
+
+    setData(item);
+  };
+
+  useEffect(() => {
+    fetchTodoInfo(); // 마운트 시에만 호출
+  }, []);
   return (
     <>
       <div id="main">
         <h2>할일 상세 보기</h2>
-        <div className="todo">
-          <div>제목 : {item.title}</div>
-          <div>내용 : {item.content}</div>
-          <div>상태 : {item.done ? "완료" : "미완료"}</div>
-          <div>작성일 : {item.createdAt}</div>
-          <div>수정일 : {item.updatedAt}</div>
+        {data && (
+          <>
+            <div className="todo">
+              <div>제목 : {data.title}</div>
+              <div>내용 : {data.content}</div>
+              <div>상태 : {data.done ? "완료" : "미완료"}</div>
+              <div>작성일 : {data.createdAt}</div>
+              <div>수정일 : {data.updatedAt}</div>
 
-          {infoMatch && (
-            <>
-              <Link to={`/list/${_id}/edit`}>수정</Link>
-              <Link to="/list">목록</Link>
-            </>
-          )}
-        </div>
+              {infoMatch && (
+                <>
+                  <Link to={`/list/${_id}/edit`}>수정</Link>
+                  <Link to="/list">목록</Link>
+                </>
+              )}
+            </div>
+          </>
+        )}
 
         <Outlet context={{ item }} />
       </div>
