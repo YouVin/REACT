@@ -1,6 +1,6 @@
 import type { TodoItem } from "@pages/TodoInfo";
-import { Link, useNavigate, useOutletContext } from "react-router";
 import { useForm } from "react-hook-form";
+import { Link, useNavigate, useOutletContext } from "react-router";
 
 interface OutletContextProps {
   item: TodoItem;
@@ -49,14 +49,22 @@ function TodoEdit() {
               },
             })}
           />
+          <div className="input-error">{errors.title?.message}</div>
           <br />
           <label htmlFor="content">내용 :</label>
           <textarea
             id="content"
             cols={23}
             rows={5}
-            defaultValue={item.content}
+            {...register("content", {
+              required: "내용을 입력하세요.",
+              pattern: {
+                value: /\s/,
+                message: "내용에 공백만 입력할 수 없습니다.",
+              },
+            })}
           />
+          <div className="input-error">{errors.content?.message}</div>
           <br />
           <label htmlFor="done">완료 :</label>
           <input type="checkbox" id="done" defaultChecked={item.done} />
