@@ -445,3 +445,12 @@ footer {
     transform: none;
   }
 }
+/* input - errormessage */
+.input-error {
+  grid-column: 1/-1;
+  font-weight: 500;
+  color: rgb(218, 0, 0);
+  &::before {
+    content: "🚨";
+  }
+}
