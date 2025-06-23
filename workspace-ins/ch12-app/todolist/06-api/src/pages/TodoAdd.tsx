@@ -1,18 +1,31 @@
+import useAxiosInstance from "@hooks/useAxiosInstance";
 import type { TodoItem } from "@pages/TodoInfo";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router";
 
 function TodoAdd() {
+  // React Compiler의 기능을 사용하지 않겠다는 선언(reset()이 제대로 동작하지 않음)
+  'use no memo'
+
+  const axiosInstance = useAxiosInstance();
 
   const { register, handleSubmit, reset, setFocus, formState: { errors } } = useForm<TodoItem>();
 
-  const addTodo = (formData: TodoItem) => {
-    console.log('API 서버에 등록 요청', formData);
-    // TODO API 서버에 등록 요청
+  const addTodo = async (formData: TodoItem) => {
 
-    alert('할일이 등록 되었습니다.');
-    reset();
-    setFocus('title');
+    console.log('API 서버에 등록 요청', formData);
+    // API 서버에 등록 요청
+    try{
+      await axiosInstance.post('/todolist', formData);
+
+      alert('할일이 등록 되었습니다.');
+      reset();
+      setFocus('title');
+    }catch(err){
+      console.error(err);
+      alert('할일 등록에 실패했습니다.');
+    }
+    
   };
 
   return (
