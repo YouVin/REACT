@@ -6,6 +6,8 @@ import { useNavigate } from "react-router";
 
 // import { useNavigate } from "react-router-dom"; // react-router-dom v6.4 이상에서 사용
 function TodoAdd() {
+  "use no memo";
+
   const axiosInstance = useAxiosInstace();
   const navigate = useNavigate();
 
