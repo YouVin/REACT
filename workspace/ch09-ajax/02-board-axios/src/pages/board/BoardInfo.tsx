@@ -1,5 +1,6 @@
+import useAxiosInstace from "@/hooks/useAxiosInstance";
 import CommentList from "@/pages/board/CommentList";
-import type { BoardInfoType } from "@/types/BoardType";
+import { type BoardInfoResType, type BoardInfoType } from "@/types/BoardType";
 import { useEffect, useState } from "react";
 
 function BoardInfo() {
@@ -9,35 +10,22 @@ function BoardInfo() {
 
   const [error, setError] = useState<Error | null>(null);
 
+  // axios instance
+  const axios = useAxiosInstace();
+
   // API 서버에 1번 게시물의 상세정보를 fetch 요청 보내기
   const requestInfo = async () => {
     try {
       // 로딩 상태를 true로 지정
       setIsLoading(true);
 
-      const res = await fetch(
-        "https://fesp-api.koyeb.app/market/posts/1?delay=1000",
-        {
-          headers: {
-            "Client-Id": "openmarket",
-          },
-        }
-      );
-      console.log("response", res);
-      const jsonData = await res.json();
-      console.log("jsonData", jsonData);
-      if (jsonData.ok) {
-        // 응답이 성공일 경우
-        setData(jsonData.item);
-        setError(null);
-      } else {
-        // 응답이 실패일 경우
-        throw new Error(jsonData.message);
-      }
+      const res = await axios.get<BoardInfoResType>("/posts/1?delay=1000", {});
+
+      setData(res.data.item);
+      setError(null);
     } catch (err) {
       setError(err as Error);
       setData(null);
-      console.error(err);
     } finally {
       setIsLoading(false);
     }
@@ -48,7 +36,7 @@ function BoardInfo() {
   }, []); // 마운트 후에 한번만 실행
   return (
     <>
-      <h1>01 Fetch API</h1>
+      <h1>02 Axios 라이브러리</h1>
       {isLoading && (
         <p>로딩중..... .... .. .. ... ... .. . 아 좀만 기다려요.. </p>
       )}
