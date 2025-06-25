@@ -1,17 +1,15 @@
-import TodoItem from "./TodoItem";
+import TodoItem, { type TodoItem as TodoItemType } from "./TodoItem";
 
-function TodoList() {
+interface TodoListPropType {
+  itemList: TodoItemType[];
+  deleteItem: (_id: number) => void;
+}
 
-  // 샘플 목록
-  const itemList = [
-    { _id: 1, title: '자바스크립트 공부', done: true },
-    { _id: 2, title: 'JS 프로젝트', done: true },
-    { _id: 3, title: 'React 공부', done: false },
-  ];
+function TodoList({ itemList, deleteItem }: TodoListPropType) {
 
   const liList = itemList.map((item) => {
     return (
-      <TodoItem key={ item._id } item={ item } hello="world" />
+      <TodoItem key={ item._id } item={ item } deleteItem={ deleteItem } />
     );
   });
 

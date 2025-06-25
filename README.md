@@ -444,10 +444,33 @@
 #### 오후(3시간)
 * 🔊 [9장 HTTP 통신과 Ajax](./workspace-ins/ch09-ajax#9장-http-통신과-ajax)
   * 🔊 [1. HTTP](./workspace-ins/ch09-ajax#1-http)
-  * 🔊 [2. API 테스트](./workspace-ins/ch09-ajax#2-api-테스트)
+  * 🔊 [2.2 Todo List API 테스트](./workspace-ins/ch09-ajax#22-todo-list-api-테스트)
     - 🧑‍💻 [06 API 서버 연동](./workspace-ins/ch12-app/todolist/06-api)
 
+### 17일차(2025.06.23 월)
+#### 오전(3시간)
+* 9장 HTTP 통신과 Ajax
+  * 🔊 [2.3 Open Market API 테스트](./workspace-ins/ch09-ajax#23-open-market-api-테스트)
+
+#### 오후(3시간)
+* 9장 HTTP 통신과 Ajax
+  * 🔊 [3.3 fetch API](./workspace-ins/ch09-ajax#33-fetch-api)
+    - 🧑‍💻 [01 Fetch API](./workspace-ins/ch09-ajax/01-board-fetch)
+    
+### 18일차(2025.06.24 화)
+#### 오전(3시간)
+* 9장 HTTP 통신과 Ajax
+  * 🔊 [3.4 axios 라이브러리](./workspace-ins/ch09-ajax#34-axios-라이브러리)
+    - 🧑‍💻 [02 Axios 라이브러리](./workspace-ins/ch09-ajax/01-board-axios)
+
+#### 오후(3시간)
+  * 🔊 [3.5 React Query(TanStack Query)](./workspace-ins/ch09-ajax#35-react-querytanstack-query)
+    - 🧑‍💻 [03 React Query 라이브러리](./workspace-ins/ch09-ajax/03-board-reactquery)
+    
 # 5. 참고 사이트
+
+## 초보자를 위한 리액트
+* <https://react.vlpt.us>
 
 ## 온라인 코드 편집기(HTML, CSS, JS)
 * CodePen: <https://codepen.io>
@@ -477,14 +500,11 @@
 ## 정규표현식 테스트
 * <https://regexr.com>
 
-## 초보자를 위한 리액트
-* <https://react.vlpt.us>
-
 ## Recoil
 * <https://recoiljs.org/ko>
 
 ## Zustand
-* <https://docs.pmnd.rs/zustand>
+* <https://zustand.docs.pmnd.rs>
 
 ## Redux (한국어)
 * <https://ko.redux.js.org>
