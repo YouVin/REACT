@@ -7,14 +7,17 @@ interface CounterContextType {
   countDown: (step: number) => void;
 }
 
+// 1. Context 객체 생성
 const CounterContext = createContext<CounterContextType>({
-  count: 6,
+  count: 100,
   countUp: () => {},
   reset: () => {},
   countDown: () => {},
 });
 
+// 3. Provider 컴포넌트를 만들어서 export
 export function CounterProvider({ children }: { children: React.ReactNode }) {
+  // 4. 상태 관련 작업을 정의
   const [count, setCount] = useState(3);
 
   const countUp = (step: number) => {

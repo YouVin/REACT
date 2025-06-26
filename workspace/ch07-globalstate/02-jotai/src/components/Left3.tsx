@@ -1,4 +1,5 @@
-import useCounterStore from "@/zustand/counter";
+import { countAtom } from "@/jotai/atoms";
+import { useAtomValue } from "jotai";
 import { useEffect } from "react";
 
 function Left3() {
@@ -6,7 +7,7 @@ function Left3() {
     console.log("#### Left3 렌더링.");
   });
 
-  const { count } = useCounterStore();
+  const count = useAtomValue(countAtom);
 
   return (
     <div>

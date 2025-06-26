@@ -8,12 +8,13 @@ function Right3() {
 
   // 2. Context 사용하기
   const { countUp, reset, countDown } = use(CounterContext);
+
   return (
     <div>
       <h3>Right3</h3>
-      <button onClick={() => countUp(1)}>+1</button>
-      <button onClick={() => reset()}>0</button>
       <button onClick={() => countDown(1)}>-1</button>
+      <button onClick={() => reset()}>0</button>
+      <button onClick={() => countUp(1)}>+1</button>
     </div>
   );
 }
