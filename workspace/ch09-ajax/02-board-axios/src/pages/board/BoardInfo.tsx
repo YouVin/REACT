@@ -21,8 +21,10 @@ function BoardInfo() {
 
       const res = await axios.get<BoardInfoResType>("/posts/1?delay=1000", {});
 
-      setData(res.data.item);
-      setError(null);
+      if (res.data.ok) {
+        setData(res.data.item);
+        setError(null);
+      }
     } catch (err) {
       setError(err as Error);
       setData(null);
