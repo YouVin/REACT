@@ -432,7 +432,7 @@ npm run dev
 ### 4.4.3 메타데이터
 * layout, page에서 metadata 변수나 generateMetadata 함수를 내보내기 하면 메타데이터 정의 가능
   - metadata: 정적인 메타데이터 출력
-  - generatrMetadata: 동적이 메타데이터 출력
+  - generateMetadata: 동적이 메타데이터 출력
 
 #### 메타데이터와 SEO
 * layout, page에서 metadata 변수나 generateMetadata 함수를 내보내기 하면 메타데이터 정의 가능
@@ -748,7 +748,7 @@ export async function createPost(formData) {
   - app/posts/[id]/[slug]/page.tsx
     + /posts/1/likes -> { id: '1', slug: 'likes' }
     + /posts/2/likes -> { id: '2', slug: 'likes' }
-    + /posts/2/favorites -> { id: '1', slug: 'favorites' }
+    + /posts/2/favorites -> { id: '2', slug: 'favorites' }
   - app/posts/[id]/[slug]/[sid]/page.tsx
     + /posts/3/likes/4 -> { id: '3', slug: 'likes', sid: '4' }
     + /posts/3/favorites/4 -> { id: '3', slug: 'favorites', sid: '4' }
@@ -782,13 +782,13 @@ export async function createPost(formData) {
 
   ```tsx
   // 이 함수가 반환한 배열만큼 SSG 페이지를 미리 생성
-  // 빌드하면 .next/server/app/posts/1.html, 2.html, 4.html
+  // 빌드하면 .next/server/app/posts/1.html, 2.html, 3.html
   export function generateStaticParams() {
     // 공지글에 대한 fetch 작업
     const posts = [
       { id: '1', title: '1번 제목' },
       { id: '2', slug: '2', sid: '3', title: '2번 제목' },
-      { id: '4', slug: '2', sid: '3', title: '4번 제목' },
+      { id: '3', slug: '2', sid: '3', title: '4번 제목' },
     ];
 
     return posts;
