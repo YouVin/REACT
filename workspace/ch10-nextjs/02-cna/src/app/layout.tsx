@@ -9,11 +9,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // 주소창의 path 값 추출
   const pathname = usePathname();
   console.log(pathname);
-  // const isActive = (path: string) => (pathname === path ? "cs-active" : "");
-  const isActive = (path: string) =>
-    pathname.startsWith(path) && pathname !== "/" ? "cs-active" : "";
+  // const isActive = (path: string) => pathname.startsWith(path) ? 'cs-active' : '';
+  const isActive = (path: string) => (pathname === path ? "cs-active" : "");
 
   return (
     <html lang="ko">
@@ -29,7 +29,7 @@ export default function RootLayout({
               <li>
                 <Link
                   href="/about"
-                  className={`hover:underline  ${isActive("/about")}`}
+                  className={`hover:underline ${isActive("/about")}`}
                 >
                   About
                 </Link>
@@ -37,23 +37,23 @@ export default function RootLayout({
               <li>
                 <Link
                   href="/posts"
-                  className={`hover:underline  ${isActive("/posts")}`}
+                  className={`hover:underline ${isActive("/posts")}`}
                 >
                   게시판
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/user/login"
-                  className={`hover:underline ${isActive("/user/login")}`}
+                  href="/login"
+                  className={`hover:underline ${isActive("/login")}`}
                 >
                   로그인
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/user/signup"
-                  className={`hover:underline ${isActive("/user/signup")}`}
+                  href="/signup"
+                  className={`hover:underline ${isActive("/signup")}`}
                 >
                   회원가입
                 </Link>
